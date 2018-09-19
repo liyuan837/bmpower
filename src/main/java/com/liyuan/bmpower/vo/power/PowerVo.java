@@ -4,6 +4,8 @@ import java.io.Serializable;
 import com.liyuan.bmpower.util.DateUtil;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
+
+import com.liyuan.bmpower.util.Tree;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiModel;
@@ -12,7 +14,7 @@ import lombok.Data;
 
 @Data
 @ApiModel(description = "细粒度权限")
-public class PowerVo implements Serializable {
+public class PowerVo implements Serializable ,Tree{
 
 	@ApiModelProperty(value = "主键", required = true)
 	private Integer id;

@@ -8,13 +8,11 @@ import com.liyuan.bmpower.domain.po.rolepowerref.RolePowerRefPo;
 import com.liyuan.bmpower.form.role.*;
 import com.liyuan.bmpower.service.PowerService;
 import com.liyuan.bmpower.service.RolePowerRefService;
-import com.liyuan.bmpower.util.JwtUser;
-import com.liyuan.bmpower.util.JwtUtil;
+import com.liyuan.bmpower.util.*;
 import com.liyuan.bmpower.vo.power.PowerVo;
 import com.liyuan.bmpower.vo.role.RoleVo;
 import com.liyuan.bmpower.service.RoleService;
 import com.liyuan.bmpower.domain.exception.bmpowerException;
-import com.liyuan.bmpower.util.CopyUtil;
 import com.liyuan.bmpower.domain.response.ResponseEntity;
 import com.liyuan.bmpower.domain.response.PageListResponse;
 import java.util.List;
@@ -65,9 +63,9 @@ public class RoleController extends BaseController {
                 PowerPo powerPo = powerService.query(ref.getPowerId());
                 powerList.add(CopyUtil.transfer(powerPo,PowerVo.class));
             }
-            vo.setPowerList(powerList);
+            List<TreeContainer<PowerVo>> treeContainerList = TreeUtil.treeFormatList(powerList,0);
+            vo.setPowerList(treeContainerList);
         }
-
 		return getSuccessResult(vo);
 	}
 

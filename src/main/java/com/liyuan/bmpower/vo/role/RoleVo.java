@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.liyuan.bmpower.util.TreeContainer;
 import com.liyuan.bmpower.vo.power.PowerVo;
 import com.netflix.discovery.converters.Auto;
 import io.swagger.annotations.ApiModel;
@@ -49,5 +50,5 @@ public class RoleVo implements Serializable {
 	private String userCode;
 
     @ApiModelProperty(value = "对应权限列表")
-	private List<PowerVo> powerList = new ArrayList<>();
+	private List<TreeContainer<PowerVo>> powerList = new ArrayList<>();
 }
