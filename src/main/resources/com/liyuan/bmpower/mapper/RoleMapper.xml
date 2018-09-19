@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liyuan.bmpower.mapper.RoleMapper">
+
+	<resultMap id="RolePo" type="com.liyuan.bmpower.domain.po.role.RolePo">
+		<result column="id" property="id" jdbcType="INTEGER"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="remark" property="remark" jdbcType="VARCHAR"/>
+		<result column="add_time" property="addTime" jdbcType="TIMESTAMP"/>
+		<result column="add_user_code" property="addUserCode" jdbcType="VARCHAR"/>
+		<result column="opt_time" property="optTime" jdbcType="TIMESTAMP"/>
+		<result column="opt_user_code" property="optUserCode" jdbcType="VARCHAR"/>
+		<result column="project_id" property="projectId" jdbcType="INTEGER"/>
+		<result column="user_code" property="userCode" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="fieldSql">
+		 t.id
+		,t.name
+		,t.remark
+		,t.add_time
+		,t.add_user_code
+		,t.opt_time
+		,t.opt_user_code
+		,t.project_id
+		,t.user_code
+	</sql>
+
+	<sql id="whereSql">
+		<if test="id != null">
+			AND t.id = #{id,jdbcType = INTEGER}
+		</if>
+		<if test="idList != null">
+			AND 
+			<foreach collection="idList" item="idItem" open="(" close=")" separator="OR">
+				t.id = #{idItem,jdbcType = INTEGER}
+			</foreach>
+		</if>
+		<if test="name != null and name != ''">
+			AND t.name = #{name,jdbcType = VARCHAR}
+		</if>
+		<if test="remark != null and remark != ''">
+			AND t.remark = #{remark,jdbcType = VARCHAR}
+		</if>
+		<if test="minAddTime != null">
+			AND t.add_time &gt;= #{minAddTime,jdbcType = TIMESTAMP}
+		</if>
+		<if test="maxAddTime != null">
+			AND t.add_time &lt;= #{maxAddTime,jdbcType = TIMESTAMP}
+		</if>
+		<if test="addUserCode != null and addUserCode != ''">
+			AND t.add_user_code = #{addUserCode,jdbcType = VARCHAR}
+		</if>
+		<if test="optUserCode != null and optUserCode != ''">
+			AND t.opt_user_code = #{optUserCode,jdbcType = VARCHAR}
+		</if>
+		<if test="projectId != null">
+			AND t.project_id = #{projectId,jdbcType = INTEGER}
+		</if>
+		<if test="userCode != null and userCode != ''">
+			AND t.user_code = #{userCode,jdbcType = VARCHAR}
+		</if>
+	</sql>
+
+	<sql id="whereDeleteSql">
+		<if test="id != null">
+			AND id = #{id,jdbcType = INTEGER}
+		</if>
+		<if test="idList != null">
+			AND 
+			<foreach collection="idList" item="idItem" open="(" close=")" separator="OR">
+				t.id = #{idItem,jdbcType = INTEGER}
+			</foreach>
+		</if>
+		<if test="name != null and name != ''">
+			AND name = #{name,jdbcType = VARCHAR}
+		</if>
+		<if test="remark != null and remark != ''">
+			AND remark = #{remark,jdbcType = VARCHAR}
+		</if>
+		<if test="minAddTime != null">
+			AND add_time &gt;= #{minAddTime,jdbcType = TIMESTAMP}
+		</if>
+		<if test="maxAddTime != null">
+			AND add_time &lt;= #{maxAddTime,jdbcType = TIMESTAMP}
+		</if>
+		<if test="addUserCode != null and addUserCode != ''">
+			AND add_user_code = #{addUserCode,jdbcType = VARCHAR}
+		</if>
+		<if test="optUserCode != null and optUserCode != ''">
+			AND opt_user_code = #{optUserCode,jdbcType = VARCHAR}
+		</if>
+		<if test="projectId != null">
+			AND project_id = #{projectId,jdbcType = INTEGER}
+		</if>
+		<if test="userCode != null and userCode != ''">
+			AND user_code = #{userCode,jdbcType = VARCHAR}
+		</if>
+	</sql>
+
+	<select id="select" parameterType="Integer" resultMap="RolePo">
+		SELECT 
+		<include refid="fieldSql"/>
+		  FROM tb_role t 
+		 WHERE t.id = #{id,jdbcType = INTEGER} 
+	</select>
+
+	<select id="count" parameterType="com.liyuan.bmpower.domain.condition.role.RoleCondition" resultType="Integer" >
+		SELECT 
+			count(1)
+		  FROM tb_role t 
+		<where>
+			<include refid="whereSql"/>
+		</where>
+	</select>
+
+	<select id="selectList" parameterType="com.liyuan.bmpower.domain.condition.role.RoleCondition" resultMap="RolePo">
+		SELECT 
+		<include refid="fieldSql"/>
+		  FROM tb_role t 
+		<where>
+			<include refid="whereSql"/>
+		</where>
+	</select>
+
+	<insert id="insert" parameterType="com.liyuan.bmpower.domain.po.role.RolePo">
+		<selectKey resultType="Integer" order="AFTER" keyProperty="id">
+				SELECT LAST_INSERT_ID()
+		</selectKey>
+
+		INSERT INTO tb_role(  
+			id
+		<if test="name != null">
+			,name
+		</if>
+		<if test="remark != null">
+			,remark
+		</if>
+		<if test="addTime != null">
+			,add_time
+		</if>
+		<if test="addUserCode != null">
+			,add_user_code
+		</if>
+		<if test="optTime != null">
+			,opt_time
+		</if>
+		<if test="optUserCode != null">
+			,opt_user_code
+		</if>
+		<if test="projectId != null">
+			,project_id
+		</if>
+		<if test="userCode != null">
+			,user_code
+		</if>
+		)
+		VALUES( 
+			#{id,jdbcType=INTEGER}
+		<if test="name != null">
+			,#{name,jdbcType=VARCHAR}
+		</if>
+		<if test="remark != null">
+			,#{remark,jdbcType=VARCHAR}
+		</if>
+		<if test="addTime != null">
+			,#{addTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="addUserCode != null">
+			,#{addUserCode,jdbcType=VARCHAR}
+		</if>
+		<if test="optTime != null">
+			,#{optTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="optUserCode != null">
+			,#{optUserCode,jdbcType=VARCHAR}
+		</if>
+		<if test="projectId != null">
+			,#{projectId,jdbcType=INTEGER}
+		</if>
+		<if test="userCode != null">
+			,#{userCode,jdbcType=VARCHAR}
+		</if>
+		)
+	</insert>
+
+	<update id="update" parameterType="com.liyuan.bmpower.domain.po.role.RolePo">
+		UPDATE tb_role t
+		 <set>
+		    <if test="name != null">
+			    t.name = #{name,jdbcType = VARCHAR}, 
+		    </if>
+		    <if test="remark != null">
+			    t.remark = #{remark,jdbcType = VARCHAR}, 
+		    </if>
+		    <if test="addTime != null">
+			    t.add_time = #{addTime,jdbcType = TIMESTAMP}, 
+		    </if>
+		    <if test="addUserCode != null">
+			    t.add_user_code = #{addUserCode,jdbcType = VARCHAR}, 
+		    </if>
+		    <if test="optTime != null">
+			    t.opt_time = #{optTime,jdbcType = TIMESTAMP}, 
+		    </if>
+		    <if test="optUserCode != null">
+			    t.opt_user_code = #{optUserCode,jdbcType = VARCHAR}, 
+		    </if>
+		    <if test="projectId != null">
+			    t.project_id = #{projectId,jdbcType = INTEGER}, 
+		    </if>
+		    <if test="userCode != null">
+			    t.user_code = #{userCode,jdbcType = VARCHAR}, 
+		    </if>
+	    </set>
+		 WHERE t.id= #{id,jdbcType = INTEGER}
+	</update>
+
+	<delete id="delete" parameterType="Integer">
+		 DELETE FROM tb_role
+		  WHERE id = #{id,jdbcType=INTEGER} 
+	</delete>
+	<delete id="deleteByCondition" parameterType="com.liyuan.bmpower.domain.condition.role.RoleCondition">
+		 DELETE FROM tb_role
+		 <where>
+			<include refid="whereDeleteSql"/>
+		 </where>
+	</delete>
+</mapper>

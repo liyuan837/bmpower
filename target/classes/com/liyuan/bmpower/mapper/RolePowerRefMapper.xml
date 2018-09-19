@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liyuan.bmpower.mapper.RolePowerRefMapper">
+
+	<resultMap id="RolePowerRefPo" type="com.liyuan.bmpower.domain.po.rolepowerref.RolePowerRefPo">
+		<result column="power_id" property="powerId" jdbcType="INTEGER"/>
+		<result column="role_id" property="roleId" jdbcType="INTEGER"/>
+		<result column="add_time" property="addTime" jdbcType="TIMESTAMP"/>
+		<result column="add_user_code" property="addUserCode" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="fieldSql">
+		 t.power_id
+		,t.role_id
+		,t.add_time
+		,t.add_user_code
+	</sql>
+
+	<sql id="whereSql">
+		<if test="powerId != null">
+			AND t.power_id = #{powerId,jdbcType = INTEGER}
+		</if>
+		<if test="powerIdList != null">
+			AND 
+			<foreach collection="powerIdList" item="powerIdItem" open="(" close=")" separator="OR">
+				t.power_id = #{powerIdItem,jdbcType = INTEGER}
+			</foreach>
+		</if>
+		<if test="roleId != null">
+			AND t.role_id = #{roleId,jdbcType = INTEGER}
+		</if>
+		<if test="minAddTime != null">
+			AND t.add_time &gt;= #{minAddTime,jdbcType = TIMESTAMP}
+		</if>
+		<if test="maxAddTime != null">
+			AND t.add_time &lt;= #{maxAddTime,jdbcType = TIMESTAMP}
+		</if>
+		<if test="addUserCode != null and addUserCode != ''">
+			AND t.add_user_code = #{addUserCode,jdbcType = VARCHAR}
+		</if>
+	</sql>
+
+	<sql id="whereDeleteSql">
+		<if test="powerId != null">
+			AND power_id = #{powerId,jdbcType = INTEGER}
+		</if>
+		<if test="powerIdList != null">
+			AND 
+			<foreach collection="powerIdList" item="powerIdItem" open="(" close=")" separator="OR">
+				t.power_id = #{powerIdItem,jdbcType = INTEGER}
+			</foreach>
+		</if>
+		<if test="roleId != null">
+			AND role_id = #{roleId,jdbcType = INTEGER}
+		</if>
+		<if test="minAddTime != null">
+			AND add_time &gt;= #{minAddTime,jdbcType = TIMESTAMP}
+		</if>
+		<if test="maxAddTime != null">
+			AND add_time &lt;= #{maxAddTime,jdbcType = TIMESTAMP}
+		</if>
+		<if test="addUserCode != null and addUserCode != ''">
+			AND add_user_code = #{addUserCode,jdbcType = VARCHAR}
+		</if>
+	</sql>
+
+	<select id="select" parameterType="Integer" resultMap="RolePowerRefPo">
+		SELECT 
+		<include refid="fieldSql"/>
+		  FROM tb_role_power_ref t 
+		 WHERE t.power_id = #{powerId,jdbcType = INTEGER} 
+	</select>
+
+	<select id="count" parameterType="com.liyuan.bmpower.domain.condition.rolepowerref.RolePowerRefCondition" resultType="Integer" >
+		SELECT 
+			count(1)
+		  FROM tb_role_power_ref t 
+		<where>
+			<include refid="whereSql"/>
+		</where>
+	</select>
+
+	<select id="selectList" parameterType="com.liyuan.bmpower.domain.condition.rolepowerref.RolePowerRefCondition" resultMap="RolePowerRefPo">
+		SELECT 
+		<include refid="fieldSql"/>
+		  FROM tb_role_power_ref t 
+		<where>
+			<include refid="whereSql"/>
+		</where>
+	</select>
+
+	<insert id="insert" parameterType="com.liyuan.bmpower.domain.po.rolepowerref.RolePowerRefPo">
+		INSERT INTO tb_role_power_ref(  
+			power_id
+		<if test="roleId != null">
+			,role_id
+		</if>
+		<if test="addTime != null">
+			,add_time
+		</if>
+		<if test="addUserCode != null">
+			,add_user_code
+		</if>
+		)
+		VALUES( 
+			#{powerId,jdbcType=INTEGER}
+		<if test="roleId != null">
+			,#{roleId,jdbcType=INTEGER}
+		</if>
+		<if test="addTime != null">
+			,#{addTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="addUserCode != null">
+			,#{addUserCode,jdbcType=VARCHAR}
+		</if>
+		)
+	</insert>
+
+	<update id="update" parameterType="com.liyuan.bmpower.domain.po.rolepowerref.RolePowerRefPo">
+		UPDATE tb_role_power_ref t
+		 <set>
+		    <if test="roleId != null">
+			    t.role_id = #{roleId,jdbcType = INTEGER}, 
+		    </if>
+		    <if test="addTime != null">
+			    t.add_time = #{addTime,jdbcType = TIMESTAMP}, 
+		    </if>
+		    <if test="addUserCode != null">
+			    t.add_user_code = #{addUserCode,jdbcType = VARCHAR}, 
+		    </if>
+	    </set>
+		 WHERE t.power_id= #{powerId,jdbcType = INTEGER}
+	</update>
+
+	<delete id="delete" parameterType="Integer">
+		 DELETE FROM tb_role_power_ref
+		  WHERE power_id = #{powerId,jdbcType=INTEGER} 
+	</delete>
+	<delete id="deleteByCondition" parameterType="com.liyuan.bmpower.domain.condition.rolepowerref.RolePowerRefCondition">
+		 DELETE FROM tb_role_power_ref
+		 <where>
+			<include refid="whereDeleteSql"/>
+		 </where>
+	</delete>
+</mapper>

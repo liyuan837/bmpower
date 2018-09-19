@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liyuan.bmpower.mapper.PowerMapper">
+
+	<resultMap id="PowerPo" type="com.liyuan.bmpower.domain.po.power.PowerPo">
+		<result column="id" property="id" jdbcType="INTEGER"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="alias_name" property="aliasName" jdbcType="VARCHAR"/>
+		<result column="parent_id" property="parentId" jdbcType="INTEGER"/>
+		<result column="action_url" property="actionUrl" jdbcType="VARCHAR"/>
+		<result column="state" property="state" jdbcType="INTEGER"/>
+		<result column="type" property="type" jdbcType="INTEGER"/>
+		<result column="sort_num" property="sortNum" jdbcType="INTEGER"/>
+		<result column="project_id" property="projectId" jdbcType="INTEGER"/>
+		<result column="add_time" property="addTime" jdbcType="TIMESTAMP"/>
+		<result column="add_user_code" property="addUserCode" jdbcType="VARCHAR"/>
+		<result column="opt_time" property="optTime" jdbcType="TIMESTAMP"/>
+		<result column="opt_user_code" property="optUserCode" jdbcType="VARCHAR"/>
+		<result column="user_code" property="userCode" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="fieldSql">
+		 t.id
+		,t.name
+		,t.alias_name
+		,t.parent_id
+		,t.action_url
+		,t.state
+		,t.type
+		,t.sort_num
+		,t.project_id
+		,t.add_time
+		,t.add_user_code
+		,t.opt_time
+		,t.opt_user_code
+		,t.user_code
+	</sql>
+
+	<sql id="whereSql">
+		<if test="id != null">
+			AND t.id = #{id,jdbcType = INTEGER}
+		</if>
+		<if test="idList != null">
+			AND 
+			<foreach collection="idList" item="idItem" open="(" close=")" separator="OR">
+				t.id = #{idItem,jdbcType = INTEGER}
+			</foreach>
+		</if>
+		<if test="name != null and name != ''">
+			AND t.name = #{name,jdbcType = VARCHAR}
+		</if>
+		<if test="aliasName != null and aliasName != ''">
+			AND t.alias_name = #{aliasName,jdbcType = VARCHAR}
+		</if>
+		<if test="parentId != null">
+			AND t.parent_id = #{parentId,jdbcType = INTEGER}
+		</if>
+		<if test="actionUrl != null and actionUrl != ''">
+			AND t.action_url = #{actionUrl,jdbcType = VARCHAR}
+		</if>
+		<if test="state != null">
+			AND t.state = #{state,jdbcType = INTEGER}
+		</if>
+		<if test="type != null">
+			AND t.type = #{type,jdbcType = INTEGER}
+		</if>
+		<if test="sortNum != null">
+			AND t.sort_num = #{sortNum,jdbcType = INTEGER}
+		</if>
+		<if test="projectId != null">
+			AND t.project_id = #{projectId,jdbcType = INTEGER}
+		</if>
+		<if test="minAddTime != null">
+			AND t.add_time &gt;= #{minAddTime,jdbcType = TIMESTAMP}
+		</if>
+		<if test="maxAddTime != null">
+			AND t.add_time &lt;= #{maxAddTime,jdbcType = TIMESTAMP}
+		</if>
+		<if test="addUserCode != null and addUserCode != ''">
+			AND t.add_user_code = #{addUserCode,jdbcType = VARCHAR}
+		</if>
+		<if test="optUserCode != null and optUserCode != ''">
+			AND t.opt_user_code = #{optUserCode,jdbcType = VARCHAR}
+		</if>
+		<if test="userCode != null and userCode != ''">
+			AND t.user_code = #{userCode,jdbcType = VARCHAR}
+		</if>
+	</sql>
+
+	<sql id="whereDeleteSql">
+		<if test="id != null">
+			AND id = #{id,jdbcType = INTEGER}
+		</if>
+		<if test="idList != null">
+			AND 
+			<foreach collection="idList" item="idItem" open="(" close=")" separator="OR">
+				t.id = #{idItem,jdbcType = INTEGER}
+			</foreach>
+		</if>
+		<if test="name != null and name != ''">
+			AND name = #{name,jdbcType = VARCHAR}
+		</if>
+		<if test="aliasName != null and aliasName != ''">
+			AND alias_name = #{aliasName,jdbcType = VARCHAR}
+		</if>
+		<if test="parentId != null">
+			AND parent_id = #{parentId,jdbcType = INTEGER}
+		</if>
+		<if test="actionUrl != null and actionUrl != ''">
+			AND action_url = #{actionUrl,jdbcType = VARCHAR}
+		</if>
+		<if test="state != null">
+			AND state = #{state,jdbcType = INTEGER}
+		</if>
+		<if test="type != null">
+			AND type = #{type,jdbcType = INTEGER}
+		</if>
+		<if test="sortNum != null">
+			AND sort_num = #{sortNum,jdbcType = INTEGER}
+		</if>
+		<if test="projectId != null">
+			AND project_id = #{projectId,jdbcType = INTEGER}
+		</if>
+		<if test="minAddTime != null">
+			AND add_time &gt;= #{minAddTime,jdbcType = TIMESTAMP}
+		</if>
+		<if test="maxAddTime != null">
+			AND add_time &lt;= #{maxAddTime,jdbcType = TIMESTAMP}
+		</if>
+		<if test="addUserCode != null and addUserCode != ''">
+			AND add_user_code = #{addUserCode,jdbcType = VARCHAR}
+		</if>
+		<if test="optUserCode != null and optUserCode != ''">
+			AND opt_user_code = #{optUserCode,jdbcType = VARCHAR}
+		</if>
+		<if test="userCode != null and userCode != ''">
+			AND user_code = #{userCode,jdbcType = VARCHAR}
+		</if>
+	</sql>
+
+	<select id="select" parameterType="Integer" resultMap="PowerPo">
+		SELECT 
+		<include refid="fieldSql"/>
+		  FROM tb_power t 
+		 WHERE t.id = #{id,jdbcType = INTEGER} 
+	</select>
+
+	<select id="count" parameterType="com.liyuan.bmpower.domain.condition.power.PowerCondition" resultType="Integer" >
+		SELECT 
+			count(1)
+		  FROM tb_power t 
+		<where>
+			<include refid="whereSql"/>
+		</where>
+	</select>
+
+	<select id="selectList" parameterType="com.liyuan.bmpower.domain.condition.power.PowerCondition" resultMap="PowerPo">
+		SELECT 
+		<include refid="fieldSql"/>
+		  FROM tb_power t 
+		<where>
+			<include refid="whereSql"/>
+		</where>
+	</select>
+
+	<insert id="insert" parameterType="com.liyuan.bmpower.domain.po.power.PowerPo">
+		<selectKey resultType="Integer" order="AFTER" keyProperty="id">
+				SELECT LAST_INSERT_ID()
+		</selectKey>
+
+		INSERT INTO tb_power(  
+			id
+		<if test="name != null">
+			,name
+		</if>
+		<if test="aliasName != null">
+			,alias_name
+		</if>
+		<if test="parentId != null">
+			,parent_id
+		</if>
+		<if test="actionUrl != null">
+			,action_url
+		</if>
+		<if test="state != null">
+			,state
+		</if>
+		<if test="type != null">
+			,type
+		</if>
+		<if test="sortNum != null">
+			,sort_num
+		</if>
+		<if test="projectId != null">
+			,project_id
+		</if>
+		<if test="addTime != null">
+			,add_time
+		</if>
+		<if test="addUserCode != null">
+			,add_user_code
+		</if>
+		<if test="optTime != null">
+			,opt_time
+		</if>
+		<if test="optUserCode != null">
+			,opt_user_code
+		</if>
+		<if test="userCode != null">
+			,user_code
+		</if>
+		)
+		VALUES( 
+			#{id,jdbcType=INTEGER}
+		<if test="name != null">
+			,#{name,jdbcType=VARCHAR}
+		</if>
+		<if test="aliasName != null">
+			,#{aliasName,jdbcType=VARCHAR}
+		</if>
+		<if test="parentId != null">
+			,#{parentId,jdbcType=INTEGER}
+		</if>
+		<if test="actionUrl != null">
+			,#{actionUrl,jdbcType=VARCHAR}
+		</if>
+		<if test="state != null">
+			,#{state,jdbcType=INTEGER}
+		</if>
+		<if test="type != null">
+			,#{type,jdbcType=INTEGER}
+		</if>
+		<if test="sortNum != null">
+			,#{sortNum,jdbcType=INTEGER}
+		</if>
+		<if test="projectId != null">
+			,#{projectId,jdbcType=INTEGER}
+		</if>
+		<if test="addTime != null">
+			,#{addTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="addUserCode != null">
+			,#{addUserCode,jdbcType=VARCHAR}
+		</if>
+		<if test="optTime != null">
+			,#{optTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="optUserCode != null">
+			,#{optUserCode,jdbcType=VARCHAR}
+		</if>
+		<if test="userCode != null">
+			,#{userCode,jdbcType=VARCHAR}
+		</if>
+		)
+	</insert>
+
+	<update id="update" parameterType="com.liyuan.bmpower.domain.po.power.PowerPo">
+		UPDATE tb_power t
+		 <set>
+		    <if test="name != null">
+			    t.name = #{name,jdbcType = VARCHAR}, 
+		    </if>
+		    <if test="aliasName != null">
+			    t.alias_name = #{aliasName,jdbcType = VARCHAR}, 
+		    </if>
+		    <if test="parentId != null">
+			    t.parent_id = #{parentId,jdbcType = INTEGER}, 
+		    </if>
+		    <if test="actionUrl != null">
+			    t.action_url = #{actionUrl,jdbcType = VARCHAR}, 
+		    </if>
+		    <if test="state != null">
+			    t.state = #{state,jdbcType = INTEGER}, 
+		    </if>
+		    <if test="type != null">
+			    t.type = #{type,jdbcType = INTEGER}, 
+		    </if>
+		    <if test="sortNum != null">
+			    t.sort_num = #{sortNum,jdbcType = INTEGER}, 
+		    </if>
+		    <if test="projectId != null">
+			    t.project_id = #{projectId,jdbcType = INTEGER}, 
+		    </if>
+		    <if test="addTime != null">
+			    t.add_time = #{addTime,jdbcType = TIMESTAMP}, 
+		    </if>
+		    <if test="addUserCode != null">
+			    t.add_user_code = #{addUserCode,jdbcType = VARCHAR}, 
+		    </if>
+		    <if test="optTime != null">
+			    t.opt_time = #{optTime,jdbcType = TIMESTAMP}, 
+		    </if>
+		    <if test="optUserCode != null">
+			    t.opt_user_code = #{optUserCode,jdbcType = VARCHAR}, 
+		    </if>
+		    <if test="userCode != null">
+			    t.user_code = #{userCode,jdbcType = VARCHAR}, 
+		    </if>
+	    </set>
+		 WHERE t.id= #{id,jdbcType = INTEGER}
+	</update>
+
+	<delete id="delete" parameterType="Integer">
+		 DELETE FROM tb_power
+		  WHERE id = #{id,jdbcType=INTEGER} 
+	</delete>
+	<delete id="deleteByCondition" parameterType="com.liyuan.bmpower.domain.condition.power.PowerCondition">
+		 DELETE FROM tb_power
+		 <where>
+			<include refid="whereDeleteSql"/>
+		 </where>
+	</delete>
+</mapper>
