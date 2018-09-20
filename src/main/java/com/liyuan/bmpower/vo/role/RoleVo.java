@@ -50,5 +50,5 @@ public class RoleVo implements Serializable {
 	private String userCode;
 
     @ApiModelProperty(value = "对应权限列表")
-	private List<TreeContainer<PowerVo>> powerList = new ArrayList<>();
+	private List<PowerVo> powerList = new ArrayList<>();
 }

@@ -2,18 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="216bce1f-a535-4b2f-b4ba-7570e3555e3c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/liyuan/bmpower/controller/PowerController.class" afterPath="$PROJECT_DIR$/target/classes/com/liyuan/bmpower/controller/PowerController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/liyuan/bmpower/controller/RoleController.class" afterPath="$PROJECT_DIR$/target/classes/com/liyuan/bmpower/controller/RoleController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/liyuan/bmpower/form/power/PowerCreateForm.class" afterPath="$PROJECT_DIR$/target/classes/com/liyuan/bmpower/form/power/PowerCreateForm.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/liyuan/bmpower/form/power/PowerUpdateForm.class" afterPath="$PROJECT_DIR$/target/classes/com/liyuan/bmpower/form/power/PowerUpdateForm.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/liyuan/bmpower/vo/power/PowerVo.class" afterPath="$PROJECT_DIR$/target/classes/com/liyuan/bmpower/vo/power/PowerVo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/liyuan/bmpower/vo/role/RoleVo.class" afterPath="$PROJECT_DIR$/target/classes/com/liyuan/bmpower/vo/role/RoleVo.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/controller/PowerController.java" afterPath="$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/controller/PowerController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/form/power/PowerCreateForm.java" afterPath="$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/form/power/PowerCreateForm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/form/power/PowerUpdateForm.java" afterPath="$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/form/power/PowerUpdateForm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/vo/power/PowerVo.java" afterPath="$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/vo/power/PowerVo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/com/liyuan/bmpower/mapper/PowerMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/com/liyuan/bmpower/mapper/PowerMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/liyuan/bmpower/mapper/PowerMapper.xml" afterPath="$PROJECT_DIR$/target/classes/com/liyuan/bmpower/mapper/PowerMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/controller/RoleController.java" afterPath="$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/controller/RoleController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/vo/role/RoleVo.java" afterPath="$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/vo/role/RoleVo.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,8 +21,8 @@
       <file leaf-file-name="PowerController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/controller/PowerController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="144" column="114" lean-forward="false" selection-start-line="144" selection-start-column="114" selection-end-line="144" selection-end-column="114" />
+            <state relative-caret-position="147">
+              <caret line="131" column="31" lean-forward="true" selection-start-line="131" selection-start-column="31" selection-end-line="131" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -38,8 +31,40 @@
       <file leaf-file-name="PowerUpdateForm.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/form/power/PowerUpdateForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="40" column="30" lean-forward="false" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
+            <state relative-caret-position="126">
+              <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RoleController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/controller/RoleController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="115" column="34" lean-forward="true" selection-start-line="115" selection-start-column="34" selection-end-line="115" selection-end-column="34" />
+              <folding>
+                <element signature="method#allocate#0;class#RoleController#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RoleUpdateForm.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/form/role/RoleUpdateForm.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="381">
+              <caret line="39" column="20" lean-forward="false" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RoleVo.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/vo/role/RoleVo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="281">
+              <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -55,7 +80,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JwtInterceptor.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="JwtInterceptor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/interceptor/JwtInterceptor.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
@@ -135,13 +160,13 @@
         <option value="$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/util/Tree.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/util/TreeContainer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/util/TreeUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/vo/role/RoleVo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/controller/RoleController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/com/liyuan/bmpower/mapper/PowerMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/vo/power/PowerVo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/controller/PowerController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/form/power/PowerCreateForm.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/form/power/PowerUpdateForm.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/vo/role/RoleVo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/controller/RoleController.java" />
       </list>
     </option>
   </component>
@@ -253,6 +278,18 @@
               <item name="liyuan" type="462c0819:PsiDirectoryNode" />
               <item name="bmpower" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bmpower" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bmpower" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liyuan" type="462c0819:PsiDirectoryNode" />
+              <item name="bmpower" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="PowerController" type="1a9f42e2:ClassTreeNode" />
             </path>
             <path>
               <item name="bmpower" type="b2602c69:ProjectViewProjectNode" />
@@ -466,7 +503,7 @@
       <workItem from="1537329398014" duration="85000" />
       <workItem from="1537329516636" duration="17984000" />
       <workItem from="1537365012930" duration="182000" />
-      <workItem from="1537410069702" duration="12961000" />
+      <workItem from="1537410069702" duration="16450000" />
     </task>
     <task id="LOCAL-00001" summary="权限中心完成">
       <created>1537351874934</created>
@@ -482,11 +519,18 @@
       <option name="project" value="LOCAL" />
       <updated>1537359613481</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="权限中心完成">
+      <created>1537443299462</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1537443299462</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31212000" />
+    <option name="totallyTimeSpent" value="34701000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
@@ -500,7 +544,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5669935" sideWeight="0.4795764" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12254902" sideWeight="0.4795764" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26324236" sideWeight="0.49394855" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36525974" sideWeight="0.48789713" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -511,7 +555,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.540931" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32744783" sideWeight="0.4969743" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1879085" sideWeight="0.48710167" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19575115" sideWeight="0.47145876" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24658574" sideWeight="0.47145876" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -709,14 +753,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/controller/UtilController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/form/role/RoleUpdateForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db_bmpower.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -741,14 +777,6 @@
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/vo/role/RoleVo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
-          <caret line="52" column="39" lean-forward="false" selection-start-line="52" selection-start-column="39" selection-end-line="52" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -784,16 +812,6 @@
         <state relative-caret-position="336">
           <caret line="16" column="15" lean-forward="true" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/controller/RoleController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="66" column="47" lean-forward="true" selection-start-line="66" selection-start-column="47" selection-end-line="66" selection-end-column="47" />
-          <folding>
-            <element signature="method#allocate#0;class#RoleController#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -837,22 +855,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/controller/PowerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="144" column="114" lean-forward="false" selection-start-line="144" selection-start-column="114" selection-end-line="144" selection-end-column="114" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/form/power/PowerUpdateForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="40" column="30" lean-forward="false" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/filter/AccessFilter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
@@ -866,6 +868,48 @@
         <state relative-caret-position="105">
           <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/vo/role/RoleVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/form/role/RoleUpdateForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="39" column="20" lean-forward="false" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/form/power/PowerUpdateForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/controller/PowerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="131" column="31" lean-forward="true" selection-start-line="131" selection-start-column="31" selection-end-line="131" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liyuan/bmpower/controller/RoleController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="115" column="34" lean-forward="true" selection-start-line="115" selection-start-column="34" selection-end-line="115" selection-end-column="34" />
+          <folding>
+            <element signature="method#allocate#0;class#RoleController#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

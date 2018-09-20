@@ -63,8 +63,7 @@ public class RoleController extends BaseController {
                 PowerPo powerPo = powerService.query(ref.getPowerId());
                 powerList.add(CopyUtil.transfer(powerPo,PowerVo.class));
             }
-            List<TreeContainer<PowerVo>> treeContainerList = TreeUtil.treeFormatList(powerList,0);
-            vo.setPowerList(treeContainerList);
+            vo.setPowerList(powerList);
         }
 		return getSuccessResult(vo);
 	}
@@ -116,6 +115,7 @@ public class RoleController extends BaseController {
         checkCreateForm(form);
         Date optTime = new Date();
 
+        //[1]新增记录
         RolePo po = CopyUtil.transfer(form, RolePo.class);
 		po.setAddTime(optTime);
 		po.setAddUserCode(jwtUser.getUserCode());
@@ -160,20 +160,32 @@ public class RoleController extends BaseController {
         }
 
         List<PowerPo> powerList = CopyUtil.transfer(form.getPowerList(),PowerPo.class);
-        //[1]删除旧的关联关系
-        RolePowerRefCondition condition = new RolePowerRefCondition();
-        condition.setRoleId(form.getId());
-        rolePowerRefService.deleteByCondition(condition);
 
-        //[2]添加新的关联关系
+        //[2]更新关联关系
         if(powerList != null && powerList.size() > 0){
             for(PowerPo powerPo : powerList){
-                RolePowerRefPo ref = new RolePowerRefPo();
-                ref.setRoleId(form.getId());
-                ref.setPowerId(powerPo.getId());
-                ref.setAddTime(new Date());
-                ref.setAddUserCode(jwtUser.getUserCode());
-                rolePowerRefService.insert(ref);
+                if(powerPo.getState() != null && powerPo.getState() == 0){
+                    //去除关联关系
+                    RolePowerRefCondition condition = new RolePowerRefCondition();
+                    condition.setRoleId(form.getId());
+                    condition.setPowerId(powerPo.getId());
+                    rolePowerRefService.deleteByCondition(condition);
+                }else{
+                    //添加关联关系
+                    RolePowerRefCondition condition = new RolePowerRefCondition();
+                    condition.setRoleId(form.getId());
+                    condition.setPowerId(powerPo.getId());
+                    if(rolePowerRefService.queryCount(condition) > 0){
+                        continue;
+                    }
+                    RolePowerRefPo ref = new RolePowerRefPo();
+                    ref.setRoleId(form.getId());
+                    ref.setPowerId(powerPo.getId());
+                    ref.setAddTime(new Date());
+                    ref.setAddUserCode(jwtUser.getUserCode());
+                    rolePowerRefService.insert(ref);
+                }
+
             }
         }
 
