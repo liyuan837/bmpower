@@ -161,6 +161,7 @@
 		<where>
 			<include refid="whereSql"/>
 		</where>
+        ORDER BY t.parent_id ASC, t.add_time ASC
 	</select>
 
 	<insert id="insert" parameterType="com.liyuan.bmpower.domain.po.power.PowerPo">

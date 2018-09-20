@@ -42,13 +42,4 @@ public class PowerCreateForm implements Serializable {
     @NotNull(message = "项目编号不能为空")
 	private Integer projectId;
 
-	@ApiModelProperty(value = "")
-	private String addUserCode;
-
-	@ApiModelProperty(value = "")
-	private String optUserCode;
-
-	@ApiModelProperty(value = "")
-	private String userCode;
-
 }

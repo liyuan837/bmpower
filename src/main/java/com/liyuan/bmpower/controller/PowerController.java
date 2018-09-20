@@ -5,12 +5,10 @@ import com.liyuan.bmpower.domain.po.power.PowerPo;
 import com.liyuan.bmpower.domain.condition.power.PowerCondition;
 import com.liyuan.bmpower.form.power.*;
 import com.liyuan.bmpower.service.RolePowerRefService;
-import com.liyuan.bmpower.util.JwtUser;
-import com.liyuan.bmpower.util.JwtUtil;
+import com.liyuan.bmpower.util.*;
 import com.liyuan.bmpower.vo.power.PowerVo;
 import com.liyuan.bmpower.service.PowerService;
 import com.liyuan.bmpower.domain.exception.bmpowerException;
-import com.liyuan.bmpower.util.CopyUtil;
 import com.liyuan.bmpower.domain.response.ResponseEntity;
 import com.liyuan.bmpower.domain.response.PageListResponse;
 import java.util.List;
@@ -46,6 +44,11 @@ public class PowerController extends BaseController {
 
 	    PowerPo po = powerService.queryWithValid(id);
 		PowerVo vo = CopyUtil.transfer(po, PowerVo.class);
+
+		if(vo.getParentId() != null && vo.getParentId() != 0){
+		    PowerPo parent = powerService.query(vo.getParentId());
+		    vo.setParentName(parent.getName());
+        }
 		return getSuccessResult(vo);
 	}
 
@@ -59,9 +62,22 @@ public class PowerController extends BaseController {
 		return getSuccessResult(count);
 	}
 
+    @ApiOperation(value = "查询细粒度权限列表",notes = "查询细粒度权限列表",httpMethod = "POST")
+    @PostMapping(value = "/queryList")
+    public ResponseEntity<PageListResponse<TreeContainer>> queryList(@RequestHeader("Authorization") String authorization, @RequestBody@Valid PowerQueryForm form) throws bmpowerException {
+        JwtUser jwtUser =JwtUtil.checkLogin(authorization);
+
+        PowerCondition condition = CopyUtil.transfer(form, PowerCondition.class);
+        condition.setPageNum(0);
+        condition.setPageSize(Integer.MAX_VALUE);
+        List<PowerPo> poList = powerService.queryList(condition);
+        List<PowerVo> voList = CopyUtil.transfer(poList, PowerVo.class);
+        return getSuccessResult(voList);
+    }
+
 	@ApiOperation(value = "查询细粒度权限列表",notes = "查询细粒度权限列表",httpMethod = "POST")
-	@PostMapping(value = "/queryList")
-	public ResponseEntity<PageListResponse<PowerVo>> queryList(@RequestHeader("Authorization") String authorization, @RequestBody@Valid PowerQueryForm form) throws bmpowerException {
+	@PostMapping(value = "/treeList")
+	public ResponseEntity<PageListResponse<PowerVo>> treeList(@RequestHeader("Authorization") String authorization, @RequestBody@Valid PowerQueryForm form) throws bmpowerException {
         JwtUser jwtUser =JwtUtil.checkLogin(authorization);
 
         PowerCondition condition = CopyUtil.transfer(form, PowerCondition.class);
@@ -69,7 +85,8 @@ public class PowerController extends BaseController {
 		condition.setPageSize(Integer.MAX_VALUE);
 		List<PowerPo> poList = powerService.queryList(condition);
 		List<PowerVo> voList = CopyUtil.transfer(poList, PowerVo.class);
-		return getSuccessResult(voList);
+        List<TreeContainer<PowerVo>> treeContainerList = TreeUtil.treeFormatList(voList,0);
+		return getSuccessResult(treeContainerList);
 	}
 
 	@ApiOperation(value = "查询细粒度权限列表(带分页)",notes = "查询细粒度权限列表(带分页)",httpMethod = "POST")
@@ -91,11 +108,27 @@ public class PowerController extends BaseController {
 	@PostMapping(value = "/add")
 	public ResponseEntity<PowerVo> add(@RequestHeader("Authorization") String authorization, @RequestBody@Valid PowerCreateForm form) throws bmpowerException {
         JwtUser jwtUser =JwtUtil.checkLogin(authorization);
-
+        PowerPo po = CopyUtil.transfer(form, PowerPo.class);
         Date optTime = new Date();
 
-        PowerPo po = CopyUtil.transfer(form, PowerPo.class);
+        //查询父权限下已经存在的权限列表
+        PowerCondition condition = new PowerCondition();
+        condition.setParentId(form.getParentId());
+        List<PowerPo> powerPoList = powerService.queryList(condition);
+        if(powerPoList != null && powerPoList.size() > 0){
+            Integer maxSortNum = 1;
+            for(PowerPo powerPo : powerPoList){
+                if(powerPo.getSortNum() > 1){
+                    maxSortNum = powerPo.getSortNum();
+                }
+            }
+            po.setSortNum(maxSortNum + 1);
+        }else{
+            po.setSortNum(1);
+        }
 
+
+        po.setState(1);
 		po.setAddTime(optTime);
 		po.setAddUserCode(jwtUser.getUserCode());
 		po.setOptTime(optTime);
@@ -124,6 +157,14 @@ public class PowerController extends BaseController {
 	@PostMapping(value = "/delete")
 	public ResponseEntity delete(@RequestHeader("Authorization") String authorization, @RequestBody@Valid PowerDeleteForm form) throws bmpowerException {
         JwtUtil.checkLogin(authorization);
+        //判断是否含有子权限
+        PowerCondition powerCondition = new PowerCondition();
+        powerCondition.setParentId(form.getId());
+        List<PowerPo> powerPoList = powerService.queryList(powerCondition);
+        if(powerPoList != null && powerPoList.size() > 0){
+            return getFailResult("该权限下含有子权限，无法删除");
+        }
+
         //[1]删除 角色——权限 关联关系
         RolePowerRefCondition condition = new RolePowerRefCondition();
         condition.setPowerId(form.getId());

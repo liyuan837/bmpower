@@ -28,6 +28,9 @@ public class PowerVo implements Serializable ,Tree{
 	@ApiModelProperty(value = "所属父级权限编号")
 	private Integer parentId;
 
+	@ApiModelProperty(value = "父级权限名")
+    private String parentName;
+
 	@ApiModelProperty(value = "接口请求路径")
 	private String actionUrl;
 

@@ -40,13 +40,4 @@ public class PowerUpdateForm implements Serializable {
 	@ApiModelProperty(value = "所属项目编号")
 	private Integer projectId;
 
-	@ApiModelProperty(value = "")
-	private String addUserCode;
-
-	@ApiModelProperty(value = "")
-	private String optUserCode;
-
-	@ApiModelProperty(value = "")
-	private String userCode;
-
 }
