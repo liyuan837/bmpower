@@ -127,7 +127,6 @@ public class PowerController extends BaseController {
             po.setSortNum(1);
         }
 
-
         po.setState(1);
 		po.setAddTime(optTime);
 		po.setAddUserCode(jwtUser.getUserCode());
