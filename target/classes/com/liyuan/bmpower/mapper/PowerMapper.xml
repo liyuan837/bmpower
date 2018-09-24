@@ -8,6 +8,8 @@
 		<result column="alias_name" property="aliasName" jdbcType="VARCHAR"/>
 		<result column="parent_id" property="parentId" jdbcType="INTEGER"/>
 		<result column="action_url" property="actionUrl" jdbcType="VARCHAR"/>
+		<result column="icon_url" property="iconUrl" jdbcType="VARCHAR"/>
+		<result column="icon_key" property="iconKey" jdbcType="VARCHAR"/>
 		<result column="state" property="state" jdbcType="INTEGER"/>
 		<result column="type" property="type" jdbcType="INTEGER"/>
 		<result column="sort_num" property="sortNum" jdbcType="INTEGER"/>
@@ -25,6 +27,8 @@
 		,t.alias_name
 		,t.parent_id
 		,t.action_url
+		,icon_url
+		,icon_key
 		,t.state
 		,t.type
 		,t.sort_num
@@ -57,6 +61,12 @@
 		</if>
 		<if test="actionUrl != null and actionUrl != ''">
 			AND t.action_url = #{actionUrl,jdbcType = VARCHAR}
+		</if>
+		<if test="iconUrl != null and iconUrl != ''">
+			AND t.icon_url = #{iconUrl,jdbcType = VARCHAR}
+		</if>
+		<if test="iconKey != null and iconKey != ''">
+			AND t.icon_key = #{iconKey,jdbcType = VARCHAR}
 		</if>
 		<if test="state != null">
 			AND t.state = #{state,jdbcType = INTEGER}
@@ -108,6 +118,12 @@
 		</if>
 		<if test="actionUrl != null and actionUrl != ''">
 			AND action_url = #{actionUrl,jdbcType = VARCHAR}
+		</if>
+		<if test="iconUrl != null and iconUrl != ''">
+			AND icon_url = #{iconUrl,jdbcType = VARCHAR}
+		</if>
+		<if test="iconKey != null and iconKey != ''">
+			AND icon_key = #{iconKey,jdbcType = VARCHAR}
 		</if>
 		<if test="state != null">
 			AND state = #{state,jdbcType = INTEGER}
@@ -183,6 +199,12 @@
 		<if test="actionUrl != null">
 			,action_url
 		</if>
+		<if test="iconUrl != null">
+			,icon_url
+		</if>
+		<if test="iconKey != null">
+			,icon_key
+		</if>
 		<if test="state != null">
 			,state
 		</if>
@@ -224,6 +246,12 @@
 		</if>
 		<if test="actionUrl != null">
 			,#{actionUrl,jdbcType=VARCHAR}
+		</if>
+		<if test="iconUrl != null">
+			,#{iconUrl,jdbcType=VARCHAR}
+		</if>
+		<if test="iconKey != null">
+			,#{iconKey,jdbcType=VARCHAR}
 		</if>
 		<if test="state != null">
 			,#{state,jdbcType=INTEGER}
@@ -270,6 +298,12 @@
 		    <if test="actionUrl != null">
 			    t.action_url = #{actionUrl,jdbcType = VARCHAR}, 
 		    </if>
+			 <if test="iconUrl != null">
+				 t.icon_url = #{iconUrl,jdbcType = VARCHAR},
+			 </if>
+			 <if test="iconKey != null">
+				 t.icon_key = #{iconKey,jdbcType = VARCHAR},
+			 </if>
 		    <if test="state != null">
 			    t.state = #{state,jdbcType = INTEGER}, 
 		    </if>

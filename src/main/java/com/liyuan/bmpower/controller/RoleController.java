@@ -49,7 +49,11 @@ public class RoleController extends BaseController {
         JwtUser jwtUser = JwtUtil.checkLogin(authorization);
 
         //[1]查询权限组
-        RolePo po = roleService.queryWithValid(id);
+        RolePo po = roleService.query(id);
+        if(po == null){
+            return getFailResult("权限读取失败");
+        }
+
         RoleVo vo = CopyUtil.transfer(po, RoleVo.class);
 
         //[2]查询对应的权限列表

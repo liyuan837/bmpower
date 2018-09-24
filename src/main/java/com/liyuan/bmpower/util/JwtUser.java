@@ -10,4 +10,6 @@ public class JwtUser implements Serializable {
     private Integer id;
     private String loginName;
     private String userCode;
+    private Integer userType;
+    private Integer projectId;
 }

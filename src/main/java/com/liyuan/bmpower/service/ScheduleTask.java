@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-@Component
-@EnableScheduling
+//@Component
+//@EnableScheduling
 public class ScheduleTask {
     //单位：毫秒，1分钟 = 60秒 = 60 * 1000毫秒
     public final static long ONE_Minute =  60 * 1000;
