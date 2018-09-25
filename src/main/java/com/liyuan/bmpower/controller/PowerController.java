@@ -1,5 +1,6 @@
 package com.liyuan.bmpower.controller;
 
+import com.liyuan.bmpower.constants.Power;
 import com.liyuan.bmpower.domain.condition.rolepowerref.RolePowerRefCondition;
 import com.liyuan.bmpower.domain.po.power.PowerPo;
 import com.liyuan.bmpower.domain.condition.power.PowerCondition;
@@ -13,6 +14,8 @@ import com.liyuan.bmpower.domain.response.ResponseEntity;
 import com.liyuan.bmpower.domain.response.PageListResponse;
 import java.util.List;
 import java.util.ArrayList;
+
+import io.jsonwebtoken.lang.Collections;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import io.swagger.annotations.Api;
@@ -66,12 +69,31 @@ public class PowerController extends BaseController {
     @PostMapping(value = "/queryList")
     public ResponseEntity<PageListResponse<TreeContainer>> queryList(@RequestHeader("Authorization") String authorization, @RequestBody@Valid PowerQueryForm form) throws bmpowerException {
         JwtUser jwtUser =JwtUtil.checkLogin(authorization);
+		Date optTime = new Date();
 
         PowerCondition condition = CopyUtil.transfer(form, PowerCondition.class);
         condition.setPageNum(0);
         condition.setPageSize(Integer.MAX_VALUE);
         List<PowerPo> poList = powerService.queryList(condition);
         List<PowerVo> voList = CopyUtil.transfer(poList, PowerVo.class);
+        if(Collections.isEmpty(voList)){
+        	//创建根权限
+        	PowerPo po = new PowerPo();
+        	po.setProjectId(form.getProjectId());
+        	po.setState(Power.PowerState.USED);
+        	po.setType(Power.PowerType.PROJECT);
+        	po.setName("项目权限目录");
+        	po.setAliasName("project");
+        	po.setParentId(0);
+        	po.setAddTime(optTime);
+        	po.setAddUserCode(jwtUser.getUserCode());
+        	po.setOptTime(optTime);
+        	po.setOptUserCode(jwtUser.getUserCode());
+        	po.setUserCode(jwtUser.getUserCode());
+        	powerService.insert(po);
+
+        	voList.add(CopyUtil.transfer(po,PowerVo.class));
+		}
         return getSuccessResult(voList);
     }
 
@@ -87,21 +109,6 @@ public class PowerController extends BaseController {
 		List<PowerVo> voList = CopyUtil.transfer(poList, PowerVo.class);
         List<TreeContainer<PowerVo>> treeContainerList = TreeUtil.treeFormatList(voList,0);
 		return getSuccessResult(treeContainerList);
-	}
-
-	@ApiOperation(value = "查询细粒度权限列表(带分页)",notes = "查询细粒度权限列表(带分页)",httpMethod = "POST")
-	@PostMapping(value = "/queryPageList")
-	public ResponseEntity<PageListResponse<PowerVo>> queryPageList(@RequestHeader("Authorization") String authorization, @RequestBody@Valid PowerQueryForm form) throws bmpowerException {
-        JwtUser jwtUser =JwtUtil.checkLogin(authorization);
-
-        PowerCondition condition = CopyUtil.transfer(form, PowerCondition.class);
-		List<PowerVo> voList = new ArrayList<>();
-		int count = powerService.queryCount(condition);
-		if (count > 0) {
-			List<PowerPo> poList = powerService.queryList(condition);
-			voList = CopyUtil.transfer(poList, PowerVo.class);
-		}
-		return getSuccessResult(getPageListResponse(condition.getPageNum(),condition.getPageSize(),count,voList));
 	}
 
 	@ApiOperation(value = "新增细粒度权限",notes = "新增细粒度权限",httpMethod = "POST")
@@ -127,7 +134,7 @@ public class PowerController extends BaseController {
             po.setSortNum(1);
         }
 
-        po.setState(1);
+        po.setState(Power.PowerState.USED);
 		po.setAddTime(optTime);
 		po.setAddUserCode(jwtUser.getUserCode());
 		po.setOptTime(optTime);

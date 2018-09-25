@@ -29,6 +29,12 @@ public class PowerCreateForm implements Serializable {
 	@ApiModelProperty(value = "接口请求路径")
 	private String actionUrl;
 
+	@ApiModelProperty(value = "图标存储路径")
+	private String iconUrl;
+
+	@ApiModelProperty(value = "图标标志，文件名")
+	private String iconKey;
+
 	@ApiModelProperty(value = "启用状态，1启用，0未启用")
 	private Integer state;
 

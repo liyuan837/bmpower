@@ -34,6 +34,14 @@ public class PowerCondition extends BaseCondition implements Serializable {
 	*/
 	private String actionUrl;
 	/**
+	 * 图标存储路径
+	 */
+	private String iconUrl;
+	/**
+	 * 图标标志，文件名
+	 */
+	private String iconKey;
+	/**
 	 * 启用状态，1启用，0未启用
 	*/
 	private Integer state;

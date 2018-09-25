@@ -1,5 +1,6 @@
 package com.liyuan.bmpower.controller;
 
+import com.liyuan.bmpower.constants.Power;
 import com.liyuan.bmpower.domain.condition.rolepowerref.RolePowerRefCondition;
 import com.liyuan.bmpower.domain.po.power.PowerPo;
 import com.liyuan.bmpower.domain.po.role.RolePo;
@@ -49,11 +50,16 @@ public class RoleController extends BaseController {
         JwtUser jwtUser = JwtUtil.checkLogin(authorization);
 
         //[1]查询权限组
-        RolePo po = roleService.queryWithValid(id);
+        RolePo po = roleService.query(id);
+        if(po == null){
+            return getFailResult("权限读取失败");
+        }
+
         RoleVo vo = CopyUtil.transfer(po, RoleVo.class);
 
         //[2]查询对应的权限列表
         RolePowerRefCondition condition = new RolePowerRefCondition();
+        condition.setPageSize(Integer.MAX_VALUE);
         condition.setRoleId(id);
         List<RolePowerRefPo> refPoList = rolePowerRefService.queryList(condition);
 
@@ -61,7 +67,9 @@ public class RoleController extends BaseController {
         if(refPoList!=null && refPoList.size() > 0){
             for(RolePowerRefPo ref: refPoList){
                 PowerPo powerPo = powerService.query(ref.getPowerId());
-                powerList.add(CopyUtil.transfer(powerPo,PowerVo.class));
+                if(powerPo.getState() != null && powerPo.getState() == Power.PowerState.USED){
+                    powerList.add(CopyUtil.transfer(powerPo,PowerVo.class));
+                }
             }
             vo.setPowerList(powerList);
         }
