@@ -2,7 +2,9 @@ package com.liyuan.bmpower.domain.response;
 
 import io.swagger.annotations.ApiModelProperty;
 
-public class ResponseEntity<T> {
+import java.io.Serializable;
+
+public class ResponseEntity<T> implements Serializable{
 
     @ApiModelProperty(value = "状态: ok 成功, fail 失败")
     private String result;
@@ -15,6 +17,10 @@ public class ResponseEntity<T> {
 
     @ApiModelProperty(value = "返回对象")
     private T data;
+
+    public  ResponseEntity(){
+
+    }
 
     public ResponseEntity(String result, Integer rescode, String msg, T data) {
         this.result = result;

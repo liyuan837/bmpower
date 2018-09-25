@@ -1,5 +1,6 @@
 package com.liyuan.bmpower.controller;
 
+import com.liyuan.bmpower.annotation.NotToken;
 import com.liyuan.bmpower.constants.Power;
 import com.liyuan.bmpower.domain.condition.rolepowerref.RolePowerRefCondition;
 import com.liyuan.bmpower.domain.po.power.PowerPo;
@@ -44,10 +45,11 @@ public class RoleController extends BaseController {
     @Autowired
     private PowerService powerService;
 
+    @NotToken
 	@ApiOperation(value = "查询权限祖",notes = "根据ID查询权限祖",httpMethod = "GET")
 	@GetMapping(value = "/query")
-	public ResponseEntity<RoleVo> query(@RequestHeader("Authorization") String authorization, @ApiParam(value = "主键", required = true)@RequestParam Integer id) throws bmpowerException {
-        JwtUser jwtUser = JwtUtil.checkLogin(authorization);
+	public ResponseEntity<RoleVo> query( @ApiParam(value = "主键", required = true)@RequestParam Integer id) throws bmpowerException {
+//        JwtUser jwtUser = JwtUtil.checkLogin(authorization);
 
         //[1]查询权限组
         RolePo po = roleService.query(id);
