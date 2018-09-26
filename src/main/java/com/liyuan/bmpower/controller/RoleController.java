@@ -48,8 +48,8 @@ public class RoleController extends BaseController {
     @NotToken
 	@ApiOperation(value = "查询权限祖",notes = "根据ID查询权限祖",httpMethod = "GET")
 	@GetMapping(value = "/query")
-	public ResponseEntity<RoleVo> query( @ApiParam(value = "主键", required = true)@RequestParam Integer id) throws bmpowerException {
-//        JwtUtil.checkLogin(authorization);
+	public ResponseEntity<RoleVo> query(@RequestHeader("Authorization") String authorization, @ApiParam(value = "主键", required = true)@RequestParam Integer id) throws bmpowerException {
+        JwtUtil.checkLogin(authorization);
 
         //[1]查询权限组
         RolePo po = roleService.query(id);
