@@ -33,7 +33,7 @@ public class JwtUtil {
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
         Date startTime = new Date(System.currentTimeMillis());
         Date expireTime = new Date(startTime.getTime() + 60 * 1000 * 60 * 24);//设置token失效时间:24小时
-        Date outDate = new Date(startTime.getTime() + 60 * 1000 * 60);//自定义会话超时时间：1小时
+        Date outDate = new Date(startTime.getTime() + 60 * 1000 * 60 * 12);//自定义会话超时时间：12小时
         JwtBuilder builder = Jwts.builder()
                 .setHeaderParam("typ", "JWT")    //设置header
                 .setHeaderParam("alg", "HS256")
