@@ -1,15 +1,12 @@
 package com.liyuan.bmpower.form.power;
 
-import java.io.Serializable;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
-import sun.plugin2.message.Message;
 
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Data
 @ApiModel(description = "细粒度权限")
