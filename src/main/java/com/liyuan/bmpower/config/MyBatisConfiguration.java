@@ -18,20 +18,20 @@ import javax.sql.DataSource;
 @MapperScan(basePackages={"com.liyuan.bmpower.mapper"},sqlSessionTemplateRef = "makeSqlSessionTemplate")
 @EnableTransactionManagement
 public class MyBatisConfiguration {
-    @Value("${jdbc.driver}")
+    @Value("${spring.datasource.driver}")
     private String driverClassName;
-    @Value("${jdbc.url}")
+    @Value("${spring.datasource.url}")
     private String url;
-    @Value("${jdbc.username}")
+    @Value("${spring.datasource.username}")
     private String username;
-    @Value("${jdbc.password}")
+    @Value("${spring.datasource.password}")
     private String password;
 
     @Bean(destroyMethod = "close",name = "dataSource")
     @Primary
     public DataSource primaryDataSource() {
         HikariDataSource hikariDataSource = new HikariDataSource();
-        hikariDataSource.setPoolName("bmpower");
+        hikariDataSource.setPoolName("bmpower-pool");
         hikariDataSource.setDriverClassName(driverClassName);
         hikariDataSource.setJdbcUrl(url);
         hikariDataSource.setUsername(username);
