@@ -1,7 +1,5 @@
 package com.liyuan.bmpower.util;
 
-import lombok.Data;
-
 import java.io.Serializable;
 import java.util.List;
 

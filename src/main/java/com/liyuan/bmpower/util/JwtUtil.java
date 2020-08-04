@@ -20,7 +20,7 @@ import java.util.Date;
  **/
 public class JwtUtil {
 
-    public static String stringKey = "LIYUAN";
+    public static String stringKey = "08154AA120144103ADC9D9A2D540946C";
     public static byte[] encodedKey = Base64.decodeBase64(stringKey);
     public static SecretKey key = new SecretKeySpec(encodedKey, 0, encodedKey.length, "AES");
 
