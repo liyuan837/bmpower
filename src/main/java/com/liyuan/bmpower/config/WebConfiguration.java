@@ -27,7 +27,8 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         //设置拦截器白名单
         String[] excludes = new String[]{
-                "/favicon**", "/error", "/*.html", "/swagger*", "/v2/*"
+                "/favicon**", "/error", "/*.html", "/swagger*", "/v2/*", "/api/**",
+                "/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**"
         };
         jwtInterceptor.setExcludes(Arrays.asList(excludes));
         registry.addInterceptor(jwtInterceptor).addPathPatterns("/**");
